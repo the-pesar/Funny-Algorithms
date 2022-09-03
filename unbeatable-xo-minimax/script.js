@@ -5,12 +5,15 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+// Try play with O :)
+
 const player = "X";
 const ai = "O";
 
 const players = ["X", "O"];
 let turnIndex = 0;
 
+// If any of these combinations captured by a player, that player will win
 const winIndexes = [
   [0, 1, 2],
   [3, 4, 5],
@@ -29,7 +32,7 @@ const winIndexes = [
     or you can simply use board[location - 1]
     the "minus ones" are because 0=1 :)
  */
-const board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const getInput = () => {
   return new Promise((resolve, reject) => {
@@ -62,10 +65,13 @@ const play = async turn => {
         console.log("Invalid Input");
       }
     } while (true);
+  } else if (turn === ai) {
+    const [_sc, newBoard] = minimax(board, turn);
+    board = newBoard;
   }
 };
 
-const print = () => {
+const print = board => {
   console.log("=======");
   let result = "|";
   for (let i = 0; i < 9; i++) {
@@ -78,20 +84,50 @@ const print = () => {
   console.log("=======");
 };
 
-const isFinished = () => {
+const isFinished = board => {
   return !board.reduce(
     (foundEmpty, cell) => foundEmpty || !["X", "O"].includes(cell),
     false
   );
 };
 
+const minimax = (board, turn, depth = 0) => {
+  const op = turn === "X" ? "O" : "X";
+  if (isFinished(board) || isWon(op, board)) {
+    if (isWon(op, board)) {
+      return [depth - 10, board];
+    }
+    return [0, board];
+  }
+
+  let bestScore = -10;
+  let bestBoard = null;
+
+  for (let i = 0; i < 9; i++) {
+    const cell = board[i];
+    if (["X", "O"].includes(cell)) continue;
+    const newBoard = [...board];
+    newBoard[i] = turn;
+
+    const [opScore] = minimax(newBoard, op, depth + 1);
+    const score = -opScore;
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestBoard = newBoard;
+    }
+  }
+
+  return [bestScore, bestBoard];
+};
+
 const game = async () => {
-  print();
-  while (!isFinished()) {
+  print(board);
+  while (!isFinished(board)) {
     let turn = players[turnIndex];
     await play(turn);
-    print();
-    if (isWon(turn)) {
+    print(board);
+    if (isWon(turn, board)) {
       console.log(`${turn} won!`);
       break;
     }
@@ -101,7 +137,7 @@ const game = async () => {
   rl.close();
 };
 
-const isWon = turn => {
+const isWon = (turn, board) => {
   for (let indexes of winIndexes) {
     let count = 0;
     for (let i of indexes) if (board[i] === turn) count++;
