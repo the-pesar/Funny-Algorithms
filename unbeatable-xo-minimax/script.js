@@ -8,6 +8,9 @@ const rl = readline.createInterface({
 const player = "X";
 const ai = "O";
 
+const players = ["X", "O"];
+let turnIndex = 0;
+
 const winIndexes = [
   [0, 1, 2],
   [3, 4, 5],
@@ -85,13 +88,15 @@ const isFinished = () => {
 const game = async () => {
   print();
   while (!isFinished()) {
-    await play("X");
+    let turn = players[turnIndex];
+    await play(turn);
     print();
-    if (isWon("X")) {
-      console.log("X won!");
+    if (isWon(turn)) {
+      console.log(`${turn} won!`);
       break;
     }
     console.log("========================");
+    turnIndex = (turnIndex + 1) % 2;
   }
   rl.close();
 };
