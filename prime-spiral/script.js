@@ -3,7 +3,7 @@ const UP = 1;
 const LEFT = 2;
 const DOWN = 3;
 
-const n = 1500000;
+const n = 100;
 
 const canvas = document.getElementById("ulam");
 canvas.style.backgroundColor = "black";
