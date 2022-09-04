@@ -16,6 +16,9 @@ Just create a \<canvas> with id "ulam" in your html and add this script to your 
 
 ## To Do
 
+- [ ] create a factory (see "factory design pattern")
+- [ ] make script configurable
+
 ---
 
 ## Persian
@@ -31,3 +34,6 @@ Just create a \<canvas> with id "ulam" in your html and add this script to your 
 در فایل html خود یک \<canvas> با id "ulam" بسازید و این اسکریپت را به فایل html خود اضافه کنید.
 
 ## انجام شود
+
+- [ ] ساختن کارخانه(به الگوی طراحی کارخانه مراجعه شود)
+- [ ] قابل تنظیم کردن اسکریپت
