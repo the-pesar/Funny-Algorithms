@@ -1,0 +1,2 @@
+# What Is Monotonic Array?
+A monotonic array is an array where elements are either sorted in increasing order or in decreasing order. If the array is sorted in increasing order then for an array arr[], arr[i]<=arr[i+1]. For an array sorted in decreasing order, arr[i]>=arr[i+1]. The function should return true only when the array is monotonic:)
