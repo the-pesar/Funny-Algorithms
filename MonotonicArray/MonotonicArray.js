@@ -1,3 +1,4 @@
+const prompt = require("prompt-sync")({ sigint: true });
 let num1;
 let num2;
 let num3;
@@ -14,19 +15,19 @@ const checkPromptValidate = num => {
 }
 
 while (true) {
-    num1 = prompt('Enter First Number')
+    num1 = prompt('Enter First Number? ')
     const isValid = checkPromptValidate(num1)
     if (isValid) {
-        num2 = prompt('Enter Second Number')
+        num2 = prompt('Enter Second Number? ')
         const isValid = checkPromptValidate(num2)
         if (isValid) {
-            num3 = prompt('Enter Third Number')
+            num3 = prompt('Enter Third Number? ')
             const isValid = checkPromptValidate(num3)
             if (isValid) {
-                num4 = prompt('Enter Fourth Number')
+                num4 = prompt('Enter Fourth Number? ')
                 const isValid = checkPromptValidate(num4)
                 if (isValid) {
-                    num5 = prompt('Enter Fifth Number')
+                    num5 = prompt('Enter Fifth Number? ')
                     const isValid = checkPromptValidate(num5)
                     if (isValid) break
                 }
@@ -49,9 +50,9 @@ for(let i = 0; i < currentArray.length -1;i++) {
 }
 
 if (monotonicChecker == 4) {
-    alert("Increment Monotonic")
+    console.log("Increment Monotonic")
 }else if (monotonicChecker == -4) {
-    alert("Decrement Monotonic")
+    console.log("Decrement Monotonic")
 }else {
-    alert("iS Not Monotonic")
+    console.log("iS Not Monotonic")
 }
