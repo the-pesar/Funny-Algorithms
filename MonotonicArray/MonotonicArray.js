@@ -1,58 +1,27 @@
-const prompt = require("prompt-sync")({ sigint: true });
-let num1;
-let num2;
-let num3;
-let num4;
-let num5;
+const { ordinalList } = require("./data");
+const {
+  printResult,
+  checkPromptValidate,
+  askNumber,
+  getMonotoisCkecker
+} = require("./controllers");
 
-const checkPromptValidate = num => {
-    if (!isNaN(Number(num))) {
-        if (num !== null) {
-            if (num.trim() !== '') return true
-        }
-    }
-    return false
+let questionCount = 1;
+let promptIsOpen = true;
+const numbersArray = [];
+
+while (promptIsOpen) {
+  // get number and validate
+  const enteredNumber = askNumber(ordinalList, questionCount);
+  if (enteredNumber === "result") promptIsOpen = false;
+  const isEnteredNumberValid = checkPromptValidate(enteredNumber);
+  // adds entered number to list and goes for next question
+  isEnteredNumberValid &&
+    questionCount++ &&
+    numbersArray.push(Number(enteredNumber));
+  // in case user wanted more than 19 number program exit to prevent bugs
+  if (questionCount === 20) promptIsOpen = false;
 }
 
-while (true) {
-    num1 = prompt('Enter First Number? ')
-    const isValid = checkPromptValidate(num1)
-    if (isValid) {
-        num2 = prompt('Enter Second Number? ')
-        const isValid = checkPromptValidate(num2)
-        if (isValid) {
-            num3 = prompt('Enter Third Number? ')
-            const isValid = checkPromptValidate(num3)
-            if (isValid) {
-                num4 = prompt('Enter Fourth Number? ')
-                const isValid = checkPromptValidate(num4)
-                if (isValid) {
-                    num5 = prompt('Enter Fifth Number? ')
-                    const isValid = checkPromptValidate(num5)
-                    if (isValid) break
-                }
-            }
-        }
-    }
-}
-
-let currentArray = [Number(num1), Number(num2), Number(num3), Number(num4), Number(num5)]
-
-let monotonicChecker = 0
-for(let i = 0; i < currentArray.length -1;i++) {
-    let prevNum = currentArray[i];
-    let currentNum = currentArray[i + 1]
-   if (prevNum <= currentNum) {
-        monotonicChecker += 1
-    }else {
-        monotonicChecker -= 1
-    }
-}
-
-if (monotonicChecker == 4) {
-    console.log("Increment Monotonic")
-}else if (monotonicChecker == -4) {
-    console.log("Decrement Monotonic")
-}else {
-    console.log("iS Not Monotonic")
-}
+const monotonicChecker = getMonotoisCkecker(numbersArray);
+printResult(monotonicChecker, numbersArray);
