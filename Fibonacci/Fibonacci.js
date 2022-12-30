@@ -1,13 +1,11 @@
-function FibonacciNumber(length) {
+function Fibonacci(length) {
   let a = 0,
     b = 1,
-    sum = 0;
+    sum = 0
   for (let i = 2; i <= length; i++) {
-    sum = a + b;
-    a = b;
-    b = sum;
+    sum = a + b
+    a = b
+    b = sum
   }
-  return sum;
+  return sum
 }
-
-console.log(FibonacciNumber(11));
