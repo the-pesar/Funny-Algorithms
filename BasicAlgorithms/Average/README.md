@@ -1,9 +1,8 @@
-### الگوریتم پیدا کردن میانگین دو عدد
+### Average Numbers
 
- الگوریتمی بنویسید که دو عدد دریافت کند و میانگین آنها را چاپ کند
+write an algorithm that receives a set of numbers and prints average them.
 
-#### Todo
+for example i/o:
 
----
-
-- [ ] Daynamic Inputs
+input = 10, 20
+output = 15
