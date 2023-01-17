@@ -1,8 +1,8 @@
 import sys
 
-# The better Way For solving Question Like This is Use Build in Functions Like -Sum-  -len- and ...
-# because this functions and optimize For large data and its better to Use this function
-# instead of create our Functions
+# The better way for solving questions like this is uses built in functions like -sum- -len- and ...
+# because these type functions are optimize for large data and its better to use this function
+# instead of creating our Functions
 
 
 def get_array_of_numbers(message):
