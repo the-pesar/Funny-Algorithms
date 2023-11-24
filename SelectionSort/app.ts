@@ -9,7 +9,7 @@ const findSmallest = (arr: number[]) => {
       smallestIndex = i;
     }
   }
-  return smallestIndex; //retunr smallest item in old array
+  return smallestIndex; //return smallest item in old array
 };
 
 const sortFunc = (oldArray: number[]): number[] => {
