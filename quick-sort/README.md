@@ -1,4 +1,4 @@
-# What is QuickSort?
+# What is Quick Sort?
 
 Quicksort is a popular sorting algorithm that follows the divide-and-conquer paradigm. It was developed by Tony Hoare in 1960 and is known for its efficiency and widespread use in practice. The algorithm works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted.
 
